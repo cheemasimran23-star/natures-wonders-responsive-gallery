@@ -1,0 +1,103 @@
+/* Mobile-first: one column and a 10px gap */
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 20px;
+  background-color: #f1f4f2;
+  color: #202820;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+header, .introduction, footer { text-align: center; }
+h1 { margin: 12px 0; font-size: 2.2rem; }
+h2 { font-size: 1.5rem; }
+.introduction { margin: 0 auto 24px; }
+.introduction p { font-size: 1rem; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 12px;
+  background-color: #ffffff;
+  color: #202820;
+  border: 3px solid #53665a;
+  border-radius: 12px;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+figcaption {
+  padding: 10px 4px 2px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+footer { margin: 28px 0 12px; }
+footer a {
+  display: inline-block;
+  padding: 10px 16px;
+  color: #ffffff;
+  background-color: #24583b;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+}
+footer a:focus-visible {
+  outline: 3px solid #c05a00;
+  outline-offset: 3px;
+}
+
+/* Tablet: two columns, circular figures, final figure spans both */
+@media screen and (min-width: 772px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  figure {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 18px;
+  }
+  figure img {
+    height: 72%;
+    border-radius: 50%;
+  }
+  .grid figure:last-child { grid-column: span 2; }
+}
+
+/* Large screen: three columns; every third figure spans two columns */
+@media screen and (min-width: 992px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  figure { border-radius: 0; }
+  .grid figure:nth-child(3n) { grid-column: span 2; }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Dark colour scheme */
+@media (prefers-color-scheme: dark) {
+  figure {
+    background-color: #202124;
+    color: #fff2a8;
+    border-color: #000000;
+  }
+}
